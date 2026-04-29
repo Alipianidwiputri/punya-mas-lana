@@ -27,6 +27,7 @@ Proyek ini berisi simulasi serangan **SQL Injection (SQLi)** jenis *Tautology* p
 
 ## Struktur File
 
+```
 uts-pemweb2-sqli/
 ├── assets/
 │   └── img/                # Menyimpan gambar screenshot eksperimen
@@ -39,7 +40,7 @@ uts-pemweb2-sqli/
 │   ├── koneksi.php         # File konfigurasi koneksi database
 │   └── index.php           # Halaman login utama (Vulnerable Code)
 └── README.md               # Dokumentasi proyek
-
+```
 ---
 
 ## Langkah Eksperimen
