@@ -1,13 +1,15 @@
-# Eksperimen Keamanan Web: Simulasi SQL Injection (Bypass Login)
+# Ujian Tengah Semester
 
-Repositori ini dibuat untuk memenuhi tugas UTS mata kuliah **Pemrograman Web 2**. Proyek ini mendemonstrasikan bagaimana celah keamanan SQL Injection dapat dieksploitasi pada halaman login sederhana dan bagaimana cara mengatasinya menggunakan *Prepared Statements*.
-
-## Data Diri
 - **Nama** : Maulana Malik Ibrahim
 - **NIM** : 312410691
 - **Kelas** : I241B
 - **Program Studi** : Teknik Informatika
-- **Instansi** : Universitas Pelita Bangsa
+  
+  ---
+  
+ # Eksperimen Keamanan Web: Simulasi SQL Injection (Bypass Login)
+
+Repositori ini dibuat untuk memenuhi tugas UTS mata kuliah **Pemrograman Web 2**. Proyek ini mendemonstrasikan bagaimana celah keamanan SQL Injection dapat dieksploitasi pada halaman login sederhana dan bagaimana cara mengatasinya menggunakan *Prepared Statements*.
 
 ---
 
