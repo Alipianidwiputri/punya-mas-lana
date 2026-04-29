@@ -105,3 +105,4 @@ Screenshot SQL Injection: ![SQL Injection Attack](img/sqli_attack.png)
 3. The PHP Group. (2024). PHP Manual: mysqli::prepare documentation.
 4. Sulistiyani, E. (2026). Analisis keamanan database pada aplikasi berbasis web. Jurnal Teknologi Informasi.
 
+# Bukti Hasil Plagiasi 
