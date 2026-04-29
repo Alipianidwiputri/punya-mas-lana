@@ -1,1 +1,79 @@
-# punya-mas-lana
+# Eksperimen Keamanan Web: Simulasi SQL Injection (Bypass Login)
+
+Repositori ini dibuat untuk memenuhi tugas UTS mata kuliah **Pemrograman Web 2**. Proyek ini mendemonstrasikan bagaimana celah keamanan SQL Injection dapat dieksploitasi pada halaman login sederhana dan bagaimana cara mengatasinya menggunakan *Prepared Statements*.
+
+## 👤 Data Diri
+- **Nama** : Maulana Malik Ibrahim
+- **NIM** : 312410691
+- **Kelas** : I241B
+- **Program Studi** : Teknik Informatika
+- **Instansi** : Universitas Pelita Bangsa
+
+---
+
+## 🚀 Deskripsi Proyek
+Proyek ini berisi simulasi serangan **SQL Injection (SQLi)** jenis *Tautology* pada form login berbasis PHP. Eksperimen ini bertujuan untuk memahami kerentanan "data-code confusion" di mana input pengguna dieksekusi sebagai perintah oleh database.
+
+## 🛠️ Teknologi yang Digunakan
+* **Bahasa**: PHP 8.x
+* **Database**: MySQL / MariaDB
+* **Server**: Apache (via XAMPP)
+* **Editor**: Visual Studio Code
+
+---
+
+## 📁 Struktur File
+* `index.php` - Halaman login utama yang berisi kode rentan dan form input.
+* `db_setup.sql` - Script SQL untuk membuat database dan tabel contoh.
+
+---
+
+## 🧪 Langkah Eksperimen
+
+### 1. Persiapan Database
+Jalankan query berikut di phpMyAdmin untuk menyiapkan data:
+```sql
+CREATE DATABASE db_keamanan_uts;
+USE db_keamanan_uts;
+
+CREATE TABLE pengguna (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(50) NOT NULL
+);
+
+INSERT INTO pengguna (username, password) VALUES ('admin', 'admin123'), ('alipiani', 'rahasia123');
+2. Analisis Kode Rentan
+Celah keamanan terletak pada penggabungan variabel input langsung ke dalam string query SQL:
+
+PHP
+$sql = "SELECT * FROM pengguna WHERE username = '$username' AND password = '$password'";
+3. Skenario Serangan
+Payload yang digunakan untuk melakukan bypass login tanpa password:
+
+Username: ' OR '1'='1
+
+Password: (kosongkan)
+
+Hasil: Database mengevaluasi '1'='1' sebagai TRUE sehingga akses diberikan meskipun password tidak valid.
+
+🛡️ Solusi Keamanan (Mitigasi)
+Untuk mencegah serangan ini, kode harus diubah menggunakan Prepared Statements agar input pengguna dianggap sebagai data literal, bukan instruksi SQL:
+
+PHP
+$stmt = $conn->prepare("SELECT id, username FROM pengguna WHERE username = ? AND password = ?");
+$stmt->bind_param("ss", $username, $password); 
+$stmt->execute();
+📸 Bukti Eksperimen
+(Silakan unggah gambar screenshot Anda ke folder 'img' di repositori ini dan tautkan di bawah ini)
+
+Screenshot Database: ![Database Setup](img/db_setup.png)
+
+Screenshot Login Normal: ![Login Normal](img/login_normal.png)
+
+Screenshot SQL Injection: ![SQL Injection Attack](img/sqli_attack.png)
+
+## Referensi
+OWASP Top 10:2021 - Injection
+
+PHP Manual: Prepared Statements and Parameterized Queries
