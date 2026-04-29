@@ -2,7 +2,7 @@
 
 Repositori ini dibuat untuk memenuhi tugas UTS mata kuliah **Pemrograman Web 2**. Proyek ini mendemonstrasikan bagaimana celah keamanan SQL Injection dapat dieksploitasi pada halaman login sederhana dan bagaimana cara mengatasinya menggunakan *Prepared Statements*.
 
-## 👤 Data Diri
+## Data Diri
 - **Nama** : Maulana Malik Ibrahim
 - **NIM** : 312410691
 - **Kelas** : I241B
@@ -11,10 +11,10 @@ Repositori ini dibuat untuk memenuhi tugas UTS mata kuliah **Pemrograman Web 2**
 
 ---
 
-## 🚀 Deskripsi Proyek
+## eskripsi Proyek
 Proyek ini berisi simulasi serangan **SQL Injection (SQLi)** jenis *Tautology* pada form login berbasis PHP. Eksperimen ini bertujuan untuk memahami kerentanan "data-code confusion" di mana input pengguna dieksekusi sebagai perintah oleh database.
 
-## 🛠️ Teknologi yang Digunakan
+## Teknologi yang Digunakan
 * **Bahasa**: PHP 8.x
 * **Database**: MySQL / MariaDB
 * **Server**: Apache (via XAMPP)
@@ -22,13 +22,13 @@ Proyek ini berisi simulasi serangan **SQL Injection (SQLi)** jenis *Tautology* p
 
 ---
 
-## 📁 Struktur File
+## Struktur File
 * `index.php` - Halaman login utama yang berisi kode rentan dan form input.
 * `db_setup.sql` - Script SQL untuk membuat database dan tabel contoh.
 
 ---
 
-## 🧪 Langkah Eksperimen
+## Langkah Eksperimen
 
 ### 1. Persiapan Database
 Jalankan query berikut di phpMyAdmin untuk menyiapkan data:
@@ -42,8 +42,10 @@ CREATE TABLE pengguna (
     password VARCHAR(50) NOT NULL
 );
 
-INSERT INTO pengguna (username, password) VALUES ('admin', 'admin123'), ('alipiani', 'rahasia123');
-2. Analisis Kode Rentan
+INSERT INTO pengguna (username, password) VALUES ('admin', 'admin123'), ('maulana', 'rahasia123');
+```
+
+### 2. Analisis Kode Rentan
 Celah keamanan terletak pada penggabungan variabel input langsung ke dalam string query SQL:
 
 PHP
@@ -57,14 +59,20 @@ Password: (kosongkan)
 
 Hasil: Database mengevaluasi '1'='1' sebagai TRUE sehingga akses diberikan meskipun password tidak valid.
 
-🛡️ Solusi Keamanan (Mitigasi)
-Untuk mencegah serangan ini, kode harus diubah menggunakan Prepared Statements agar input pengguna dianggap sebagai data literal, bukan instruksi SQL:
+---
 
+## Solusi Keamanan (Mitigasi)
+Untuk mencegah serangan ini, kode harus diubah menggunakan Prepared Statements agar input pengguna dianggap sebagai data literal, bukan instruksi SQL:
+```
 PHP
 $stmt = $conn->prepare("SELECT id, username FROM pengguna WHERE username = ? AND password = ?");
 $stmt->bind_param("ss", $username, $password); 
 $stmt->execute();
-📸 Bukti Eksperimen
+```
+
+---
+
+## Bukti Eksperimen
 (Silakan unggah gambar screenshot Anda ke folder 'img' di repositori ini dan tautkan di bawah ini)
 
 Screenshot Database: ![Database Setup](img/db_setup.png)
@@ -73,7 +81,12 @@ Screenshot Login Normal: ![Login Normal](img/login_normal.png)
 
 Screenshot SQL Injection: ![SQL Injection Attack](img/sqli_attack.png)
 
-## Referensi
-OWASP Top 10:2021 - Injection
+---
 
-PHP Manual: Prepared Statements and Parameterized Queries
+## Referensi
+
+1. OWASP Foundation. (2021). OWASP Top 10:2021 - A03:2021 Injection.
+2. Gustiyono, A., et al. (2024). Analisa kerentanan website terhadap serangan siber. Jurnal Informatika dan Keamanan Siber.
+3. The PHP Group. (2024). PHP Manual: mysqli::prepare documentation.
+4. Sulistiyani, E. (2026). Analisis keamanan database pada aplikasi berbasis web. Jurnal Teknologi Informasi.
+
