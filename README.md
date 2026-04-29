@@ -1,7 +1,7 @@
 # Ujian Tengah Semester
 
 - **Nama : Maulana Malik Ibrahim**
-- **NIM : 312410691**
+- **NIM : 312410185**
 - **Kelas : I241B**
 - **Mata Kuliah : Pemrograman Web2**
 - **Program Studi : Teknik Informatika**
