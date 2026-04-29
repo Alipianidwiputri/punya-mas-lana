@@ -13,9 +13,8 @@
 
 Repositori ini dibuat untuk memenuhi tugas UTS mata kuliah **Pemrograman Web 2**. Proyek ini mendemonstrasikan bagaimana celah keamanan SQL Injection dapat dieksploitasi pada halaman login sederhana dan bagaimana cara mengatasinya menggunakan *Prepared Statements*.
 
----
 
-## eskripsi Proyek
+## Deskripsi Proyek
 Proyek ini berisi simulasi serangan **SQL Injection (SQLi)** jenis *Tautology* pada form login berbasis PHP. Eksperimen ini bertujuan untuk memahami kerentanan "data-code confusion" di mana input pengguna dieksekusi sebagai perintah oleh database.
 
 ## Teknologi yang Digunakan
@@ -27,8 +26,19 @@ Proyek ini berisi simulasi serangan **SQL Injection (SQLi)** jenis *Tautology* p
 ---
 
 ## Struktur File
-* `index.php` - Halaman login utama yang berisi kode rentan dan form input.
-* `db_setup.sql` - Script SQL untuk membuat database dan tabel contoh.
+
+uts-pemweb2-sqli/
+├── assets/
+│   └── img/                # Menyimpan gambar screenshot eksperimen
+│       ├── db_setup.png
+│       ├── login_normal.png
+│       └── sqli_attack.png
+├── database/
+│   └── db_setup.sql        # Script SQL untuk konfigurasi database
+├── src/
+│   ├── koneksi.php         # File konfigurasi koneksi database
+│   └── index.php           # Halaman login utama (Vulnerable Code)
+└── README.md               # Dokumentasi proyek
 
 ---
 
